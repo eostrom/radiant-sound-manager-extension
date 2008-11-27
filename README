@@ -1,0 +1,40 @@
+= SoundManager
+
+Provides Radiant[http://www.radiantcms.org/] with support for
+SoundManager2[http://www.schillmania.com/projects/soundmanager2/].
+Includes SoundManager V2.90a.20081028.
+
+== Usage
+
+Before using, copy the SoundManager resources into your public directory:
+
+  rake radiant:extensions:sound_manager:update
+
+To make SoundManager available on your page:
+
+  <r:sound_manager [debug="true"] />
+
+If +debug+ is present, the debugging version of SoundManager will be
+used.  This means that SoundManager will log diagnostic messages to
+the console, or just all over your page.  (See the SoundManager
+documentation.)
+
+== Inline player
+
+To use the inline player (transform all MP3 links on the page to play
+with SoundManager, without leaving the page or downloading the MP3):
+
+  <r:sound_manager:inlineplayer />
+
+OR
+
+  <r:sound_manager [debug="true"]><r:inlineplayer /></r:sound_manager>
+
+The extension installs a default stylesheet in
+/stylesheets/sound_manager/inlineplayer.css (and supporting images in
+/images/sound_manager/inlineplayer) but the stylesheet is not
+automatically applied by the +inlineplayer+ tag.  You'll have to
+create the link yourself.
+
+You may very well want to write your own stylesheet instead.
+The CSS file has instructions.

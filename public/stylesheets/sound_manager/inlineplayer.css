@@ -1,0 +1,115 @@
+/*
+
+ SoundManager 2: In-page MP3 player example
+ ------------------------------------------
+
+ Clicks on links to MP3s are intercepted via JS, calls are
+ made to SoundManager to load/play sounds. CSS classes are
+ appended to the link, which are used to highlight the
+ current play state and so on.
+
+ Class names are applied in addition to "sm2_link" base.
+
+ Default:
+
+ sm2_link
+
+ Additional states:
+
+ sm2_playing
+ sm2_paused
+
+ eg.
+
+ <!-- default -->
+ <a href="some.mp3" class="sm2_link">some.mp3</a>
+
+ <!-- playing -->
+ <a href="some.mp3" class="sm2_link sm2_playing">some.mp3</a>
+
+
+ Note you don't require ul.sm_graphic / ul.sm_flat etc. for your use
+ if only using one style on a page. You can just use .sm2_link{}
+ and so on, but isolate the CSS you want.
+
+ Side note: Would do multiple class definitions eg.
+
+ a.sm2_default.sm2_playing{}
+
+ .. except IE 6 has a parsing bug which may break behaviour,
+ applying sm2_playing {} even when the class is set to sm2_default.
+
+
+ If you want to make your own UI from scratch, here is the base:
+
+ Default + hover state, "click to play":
+
+ a.sm2_link {}
+ a.sm2_link:hover {}
+
+ Playing + hover state, "click to pause":
+
+ a.sm2_playing {}
+ a.sm2_playing:hover {}
+
+ Paused + hover state, "click to resume":
+
+ a.sm2_paused {}
+ a.sm2_paused:hover {}
+
+
+*/
+
+/* background-image-based CSS3 example */
+
+.sm_graphic {
+ margin:0px;
+ padding:0px;
+ list-style-type: none;
+}
+
+.sm_graphic li a,
+.sm_graphic li a.sm2_link {
+ /* assume all items will be sounds rather than wait for onload etc. in this example.. may differ for your uses. */
+ display:inline-block;
+ padding-left:22px;
+ min-height:16px;
+ padding:0px 3px 0px 23px;
+ min-width:19em;
+ _width:19em;
+ text-decoration:none;
+ font-weight:bold;
+ text-shadow: 0 0 0 #000; /* stupid Safari "fat" font rendering tweak */
+}
+
+.sm_graphic li a.sm2_link {
+ /* safari 3.1+ fun (or, proprietary crap. TBD.) */
+ -webkit-transition-property: hover;
+ -webkit-transition: all 0.15s ease-in-out;
+}
+
+.sm_graphic li a.sm2_link:hover {
+ background:#333 url(/images/sound_manager/inlineplayer/icon_play.png) no-repeat 3px 50%;
+ _background-image:url(/images/sound_manager/inlineplayer/icon_play.gif); /* IE 6 */
+ border-color:#333;
+}
+
+.sm_graphic li a.sm2_paused {
+ background-color:#999;
+ border-color:#999;
+}
+
+.sm_graphic li a.sm2_paused:hover {
+ background:#999 url(/images/sound_manager/inlineplayer/icon_play.png) no-repeat 3px 50%;
+ _background-image:url(/images/sound_manager/inlineplayer/icon_play.gif);
+ border-color:#999;
+}
+
+.sm_graphic li a.sm2_playing,
+.sm_graphic li a.sm2_playing:hover {
+ background:#336699 url(/images/sound_manager/inlineplayer/icon_pause.png) no-repeat 3px 50%;
+ _background-image:url(/images/sound_manager/inlineplayer/icon_pause.gif);
+ border-color:#336699;
+ text-decoration:none;
+}
+
